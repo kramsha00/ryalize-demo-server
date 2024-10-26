@@ -14,13 +14,16 @@ class User
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $firstName = null;
+    public ?string $firstName = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $lastName = null;
+    public ?string $lastName = null;
+
+    #[ORM\Column(length: 255, unique: true)]
+    public ?string $email = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $email = null;
+    private ?string $password = null;
 
     public function getId(): ?int
     {
@@ -59,6 +62,18 @@ class User
     public function setEmail(string $email): static
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): static
+    {
+        $this->password = $password;
 
         return $this;
     }
