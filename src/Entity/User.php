@@ -43,7 +43,7 @@ class User
     #[ORM\Column(length: 255, unique: true)]
     public ?string $email = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $password = null;
 
     public function getId(): ?int

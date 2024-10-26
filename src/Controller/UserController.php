@@ -6,9 +6,10 @@ use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends AbstractController
 {
@@ -24,39 +25,81 @@ class UserController extends AbstractController
     #[Route('/api/users', name: 'get_users', methods: ['GET'])]
     public function getUsers(EntityManagerInterface $entityManager): JsonResponse
     {
-        $users = $entityManager->getRepository(User::class)->findAll();
-        return new JsonResponse($users);
+        try {
+            $users = $entityManager->getRepository(User::class)->findAll();
+            return $this->json($users, Response::HTTP_OK);
+        } catch (\Exception $e) {
+            return $this->json([
+                'error' => 'An error occurred while fetching users.',
+                'details' => $e->getMessage()
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 
     #[Route('/api/users/{id}', name: 'edit_user', methods: ['PUT'])]
     public function editUser(int $id, Request $request, EntityManagerInterface $entityManager, ValidatorInterface $validator): JsonResponse
     {
-        $user = $entityManager->getRepository(User::class)->find($id);
-
-        if (!$user) {
-            return new JsonResponse(['error' => 'User not found'], 404);
-        }
-
-        $data = json_decode($request->getContent(), true);
-
-        $user->setFirstName(trim($data['firstName'])?? '');
-        $user->setLastName(trim($data['lastName']) ?? '');
-        $user->setEmail(trim($data['email']) ?? '');
-
-        // Validate user
-        $errors = $validator->validate($user);
-
-        if (count($errors) > 0) {
-            $errorMessages = [];
-            foreach ($errors as $error) {
-                $errorMessages[] = $error->getMessage();
+        try {
+            $user = $entityManager->getRepository(User::class)->find($id);
+            if (!$user) {
+                return $this->json(['error' => 'User not found'], Response::HTTP_NOT_FOUND);
             }
-            return new JsonResponse(['errors' => $errorMessages], 400);
+
+            $data = json_decode($request->getContent(), true);
+            $user->setFirstName(trim($data['firstName']) ?? '');
+            $user->setLastName(trim($data['lastName']) ?? '');
+            $user->setEmail(trim($data['email']) ?? '');
+
+            $errors = $validator->validate($user);
+            if (count($errors) > 0) {
+                $errorMessages = [];
+                foreach ($errors as $error) {
+                    $errorMessages[] = $error->getMessage();
+                }
+                return $this->json(['errors' => $errorMessages], Response::HTTP_BAD_REQUEST);
+            }
+
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            return $this->json(['message' => 'User updated successfully'], Response::HTTP_OK);
+        } catch (\Exception $e) {
+            return $this->json([
+                'error' => 'An error occurred while updating the user.',
+                'details' => $e->getMessage()
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
+    }
 
-        $entityManager->persist($user);
-        $entityManager->flush();
+    #[Route('/api/users', name: 'add_user', methods: ['POST'])]
+    public function addUser(Request $request, EntityManagerInterface $entityManager, ValidatorInterface $validator): JsonResponse
+    {
+        try {
+            $data = json_decode($request->getContent(), true);
 
-        return new JsonResponse(['message' => 'User updated successfully'], 200);
+            $user = new User();
+            $user->setFirstName(trim($data['firstName']) ?? '');
+            $user->setLastName(trim($data['lastName']) ?? '');
+            $user->setEmail(trim($data['email']) ?? '');
+
+            $errors = $validator->validate($user);
+            if (count($errors) > 0) {
+                $errorMessages = [];
+                foreach ($errors as $error) {
+                    $errorMessages[] = $error->getMessage();
+                }
+                return $this->json(['errors' => $errorMessages], Response::HTTP_BAD_REQUEST);
+            }
+
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            return $this->json(['message' => 'User created successfully'], Response::HTTP_CREATED);
+        } catch (\Exception $e) {
+            return $this->json([
+                'error' => 'An error occurred while creating the user.',
+                'details' => $e->getMessage()
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 }
