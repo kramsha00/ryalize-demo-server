@@ -102,4 +102,27 @@ class UserController extends AbstractController
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+
+    #[Route('/api/users/{id}', name: 'delete_user', methods: ['DELETE'])]
+    public function deleteUser(int $id, EntityManagerInterface $entityManager): JsonResponse
+    {
+        try {
+            $user = $entityManager->getRepository(User::class)->find($id);
+
+            // Check if user exists
+            if (!$user) {
+                return $this->json(['error' => 'User not found'], Response::HTTP_NOT_FOUND);
+            }
+
+            $entityManager->remove($user);
+            $entityManager->flush();
+
+            return $this->json(['message' => 'User deleted successfully'], Response::HTTP_OK);
+        } catch (\Exception $e) {
+            return $this->json([
+                'error' => 'An error occurred while deleting the user.',
+                'details' => $e->getMessage()
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
 }
