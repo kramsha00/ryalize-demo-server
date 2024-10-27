@@ -13,22 +13,22 @@ class Location
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    public ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $address = null;
+    public ?string $address = null;
 
     #[ORM\Column(length: 30)]
-    private ?string $city = null;
+    public ?string $city = null;
 
     #[ORM\Column(length: 100)]
-    private ?string $country = null;
+    public ?string $country = null;
 
     /**
      * @var Collection<int, Transaction>
      */
     #[ORM\OneToMany(targetEntity: Transaction::class, mappedBy: 'location')]
-    private Collection $transactions;
+    public Collection $transactions;
 
     public function __construct()
     {

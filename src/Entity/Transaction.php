@@ -12,21 +12,21 @@ class Transaction
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    public ?int $id = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 7, scale: 3)]
-    private ?string $amount = null;
+    public ?string $amount = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $date = null;
+    public ?\DateTimeInterface $date = null;
 
-    #[ORM\ManyToOne(cascade: ['persist'], inversedBy: 'transactions')]
+    #[ORM\ManyToOne(cascade: ['persist'], fetch: 'EAGER', inversedBy: 'transactions')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Location $location = null;
+    public ?Location $location = null;
 
-    #[ORM\ManyToOne(cascade: ['persist'], inversedBy: 'transactions')]
+    #[ORM\ManyToOne(cascade: ['persist'], fetch: 'EAGER', inversedBy: 'transactions')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $user = null;
+    public ?User $user = null;
 
     public function getId(): ?int
     {
