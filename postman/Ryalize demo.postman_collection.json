@@ -1,0 +1,462 @@
+{
+	"info": {
+		"_postman_id": "50b942c4-4e30-4d01-8bbc-a069aea1ccc6",
+		"name": "Ryalize demo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25137663",
+		"_collection_link": "https://planetary-resonance-434081.postman.co/workspace/My-Workspace~1cd2a51f-a934-4055-8299-e35b3bb80926/collection/25137663-50b942c4-4e30-4d01-8bbc-a069aea1ccc6?action=share&source=collection_link&creator=25137663"
+	},
+	"item": [
+		{
+			"name": "Get Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/users",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Users",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/users",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 28 Oct 2024 11:32:05 GMT"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.3.10"
+						},
+						{
+							"key": "X-Robots-Tag",
+							"value": "noindex"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1492"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 63,\n        \"firstName\": \"Prudence\",\n        \"lastName\": \"Buckridge\",\n        \"email\": \"tbalistreri@yahoo.com\"\n    },\n    {\n        \"id\": 64,\n        \"firstName\": \"Salvador\",\n        \"lastName\": \"Quigley\",\n        \"email\": \"wsporer@hotmail.com\"\n    },\n    {\n        \"id\": 65,\n        \"firstName\": \"Creola\",\n        \"lastName\": \"Kunze\",\n        \"email\": \"uziemann@hahn.com\"\n    },\n    {\n        \"id\": 66,\n        \"firstName\": \"Alden\",\n        \"lastName\": \"Schultz\",\n        \"email\": \"shanel59@yahoo.com\"\n    },\n    {\n        \"id\": 68,\n        \"firstName\": \"Maegan\",\n        \"lastName\": \"McLaughlin\",\n        \"email\": \"vquigley@crooks.biz\"\n    },\n    {\n        \"id\": 69,\n        \"firstName\": \"Lance\",\n        \"lastName\": \"Beier\",\n        \"email\": \"rprosacco@gmail.com\"\n    },\n    {\n        \"id\": 70,\n        \"firstName\": \"Mittie\",\n        \"lastName\": \"Doyle\",\n        \"email\": \"barrows.jamal@yahoo.com\"\n    },\n    {\n        \"id\": 71,\n        \"firstName\": \"Dannie\",\n        \"lastName\": \"Krajcik\",\n        \"email\": \"lschultz@prohaska.com\"\n    },\n    {\n        \"id\": 72,\n        \"firstName\": \"Lera\",\n        \"lastName\": \"Mante\",\n        \"email\": \"tromp.randi@farrell.com\"\n    },\n    {\n        \"id\": 73,\n        \"firstName\": \"Okey\",\n        \"lastName\": \"Welch\",\n        \"email\": \"elmer.hane@yahoo.com\"\n    },\n    {\n        \"id\": 74,\n        \"firstName\": \"Glennie\",\n        \"lastName\": \"Wyman\",\n        \"email\": \"cruickshank.betsy@weber.com\"\n    },\n    {\n        \"id\": 75,\n        \"firstName\": \"Sabrina\",\n        \"lastName\": \"Terry\",\n        \"email\": \"langosh.bethany@braun.com\"\n    },\n    {\n        \"id\": 76,\n        \"firstName\": \"Autumn\",\n        \"lastName\": \"Deckow\",\n        \"email\": \"pherman@legros.com\"\n    },\n    {\n        \"id\": 77,\n        \"firstName\": \"Dayana\",\n        \"lastName\": \"Frami\",\n        \"email\": \"little.roderick@trantow.info\"\n    },\n    {\n        \"id\": 78,\n        \"firstName\": \"Trent\",\n        \"lastName\": \"Funk\",\n        \"email\": \"zklocko@hotmail.com\"\n    },\n    {\n        \"id\": 79,\n        \"firstName\": \"Francis\",\n        \"lastName\": \"Yundt\",\n        \"email\": \"madyson05@yahoo.com\"\n    },\n    {\n        \"id\": 80,\n        \"firstName\": \"Armani\",\n        \"lastName\": \"Flatley\",\n        \"email\": \"conn.kristian@yahoo.com\"\n    },\n    {\n        \"id\": 102,\n        \"firstName\": \"Ramsha\",\n        \"lastName\": \"Khalid\",\n        \"email\": \"ramsha@test.com\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Add User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"Ramsha\",\n    \"lastName\": \"Khalid\",\n    \"email\" : \"ramsha@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/users",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add User",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Ramsha\",\n    \"lastName\": \"Khalid\",\n    \"email\" : \"ramsha@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/users",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 28 Oct 2024 11:56:36 GMT"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.3.10"
+						},
+						{
+							"key": "X-Robots-Tag",
+							"value": "noindex"
+						},
+						{
+							"key": "Content-Length",
+							"value": "125"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"User created successfully\",\n    \"user\": {\n        \"id\": 103,\n        \"firstName\": \"Ramsha\",\n        \"lastName\": \"Khalid\",\n        \"email\": \"ramsha@gmail.com\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Update user",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"John\",\n    \"lastName\": \"Michael\",\n    \"email\" : \"michael@test.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/users/:id",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"users",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "69"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update user",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"John\",\n    \"lastName\": \"Michael\",\n    \"email\" : \"michael@test.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/users/:id",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "69"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 28 Oct 2024 11:55:59 GMT"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.3.10"
+						},
+						{
+							"key": "X-Robots-Tag",
+							"value": "noindex"
+						},
+						{
+							"key": "Content-Length",
+							"value": "123"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"User updated successfully\",\n    \"user\": {\n        \"id\": 69,\n        \"firstName\": \"John\",\n        \"lastName\": \"Michael\",\n        \"email\": \"michael@test.com\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/users/:id",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"users",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "68"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete User",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/users/:id",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "68"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 28 Oct 2024 11:34:19 GMT"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.3.10"
+						},
+						{
+							"key": "X-Robots-Tag",
+							"value": "noindex"
+						},
+						{
+							"key": "Content-Length",
+							"value": "39"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"User deleted successfully\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Locations",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/locations/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"locations",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Locations",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/locations/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"locations",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 28 Oct 2024 11:35:28 GMT"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.3.10"
+						},
+						{
+							"key": "X-Robots-Tag",
+							"value": "noindex"
+						},
+						{
+							"key": "Content-Length",
+							"value": "654"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 56,\n        \"address\": \"Schulist PLC 13644 Kub Circles\",\n        \"city\": \"Alexandretown\",\n        \"country\": \"Maldives\",\n        \"transactions\": {}\n    },\n    {\n        \"id\": 57,\n        \"address\": \"Heller, Boyle and Lynch 3022 Prohaska Extensions Apt. 357\",\n        \"city\": \"Marquardtburgh\",\n        \"country\": \"Korea\",\n        \"transactions\": {}\n    },\n    {\n        \"id\": 58,\n        \"address\": \"Metz, Hane and Bins 2762 Nader Valley Apt. 585\",\n        \"city\": \"East Terrillton\",\n        \"country\": \"Cyprus\",\n        \"transactions\": {}\n    },\n    {\n        \"id\": 59,\n        \"address\": \"Windler and Sons 3695 Terrance Ford Apt. 581\",\n        \"city\": \"South Martinshire\",\n        \"country\": \"Haiti\",\n        \"transactions\": {}\n    },\n    {\n        \"id\": 60,\n        \"address\": \"Jacobson, Robel and Zulauf 5729 Kunze Crossing Suite 943\",\n        \"city\": \"Colinview\",\n        \"country\": \"Slovenia\",\n        \"transactions\": {}\n    }\n]"
+				}
+			]
+		}
+	]
+}

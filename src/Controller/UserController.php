@@ -62,7 +62,7 @@ class UserController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return $this->json(['message' => 'User updated successfully'], Response::HTTP_OK);
+            return $this->json(['message' => 'User updated successfully', 'user' => $user], Response::HTTP_OK);
         } catch (\Exception $e) {
             return $this->json([
                 'error' => 'An error occurred while updating the user.',
@@ -94,7 +94,7 @@ class UserController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return $this->json(['message' => 'User created successfully'], Response::HTTP_CREATED);
+            return $this->json(['message' => 'User created successfully', 'user' => $user], Response::HTTP_CREATED);
         } catch (\Exception $e) {
             return $this->json([
                 'error' => 'An error occurred while creating the user.',

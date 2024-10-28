@@ -29,8 +29,8 @@ class TransactionController extends AbstractController
         $locationId = $request->query->get('locationId');
         $startDate = $request->query->get('startDate');
         $endDate = $request->query->get('endDate');
-        $page = (int)$request->query->get('page', 1);
-        $limit = (int)$request->query->get('limit', 10);
+        $page = max((int)$request->query->get('page', 1), 1);
+        $limit = max((int)$request->query->get('limit', 10), 1);
 
         try {
             $startDate = $startDate ? new \DateTime($startDate) : null;
@@ -60,7 +60,9 @@ class TransactionController extends AbstractController
                 'totalPages' => ceil($totalCount / $limit),
             ]);
         } catch (\Exception $e) {
-            return $this->json(['error' => 'An error occurred while retrieving transactions.'], Response::HTTP_INTERNAL_SERVER_ERROR);
+            return $this->json(
+                ['error' => $e->getMessage()],
+                Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
